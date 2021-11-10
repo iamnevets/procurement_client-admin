@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:procurement/model/tender.model.dart';
+import 'package:procurement/view/profile/profile.view.dart';
 
 class TenderDetailView extends StatelessWidget {
   const TenderDetailView({Key? key, required this.selectedTender}) : super(key: key);
@@ -15,10 +16,21 @@ class TenderDetailView extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
         actions: [
-          CircleAvatar(
-            backgroundColor: Theme.of(context).colorScheme.primary,
-            child: Icon(Icons.account_circle),
-          )
+          Padding(
+              padding: EdgeInsets.all(10.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return ProfileView();
+                  }));
+                },
+                child: CircleAvatar(
+                  backgroundColor: Colors.amber,
+                  radius: 20,
+                  child: Icon(Icons.person_outlined),
+                ),
+              ),
+            )
         ],
       ),
       body: SingleChildScrollView(

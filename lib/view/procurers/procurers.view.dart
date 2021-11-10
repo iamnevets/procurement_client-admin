@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:procurement/model/entity.model.dart';
 import 'package:procurement/view/navigation.view.dart';
-import 'package:procurement/view/procurers/addNewProcurer.view.dart';
-import 'package:procurement/view/procurers/procurerDetail.view.dart';
 
 class ProcurersView extends StatefulWidget {
-  const ProcurersView({ Key? key }) : super(key: key);
+  const ProcurersView({Key? key}) : super(key: key);
 
   @override
   _ProcurersViewState createState() => _ProcurersViewState();
@@ -59,49 +57,84 @@ class _ProcurersViewState extends State<ProcurersView> {
               padding: const EdgeInsets.all(10.0),
               child: Column(
                 children: [
-                  Text('All Procurers', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),),
-                   Text(listAllProcurerEntitys.length.toString()),
+                  Text(
+                    'All Procurers',
+                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                  ),
+                  Text(listAllProcurerEntitys.length.toString()),
                 ],
               ),
             ),
             Expanded(
                 flex: 5,
                 child: Container(
-                  color: Colors.transparent,
-                  width: double.infinity,
-                  padding: EdgeInsets.symmetric(horizontal: 50),
-                  child: DataTable(
-                    columns: [
-                      DataColumn(label: Text('ID', style: TextStyle(fontWeight: FontWeight.bold),)),
-                      DataColumn(label: Text('LOGO', style: TextStyle(fontWeight: FontWeight.bold),)),
-                      DataColumn(label: Text('NAME', style: TextStyle(fontWeight: FontWeight.bold),)),
-                      DataColumn(label: Text('DATE CREATED', style: TextStyle(fontWeight: FontWeight.bold),)),
-                      DataColumn(label: Text('DESCRIPTION', style: TextStyle(fontWeight: FontWeight.bold),)),
-                    ],
-                    rows: listAllProcurerEntitys.map((procurer) => 
-                      DataRow(
-                        cells: [
-                          DataCell(Text(procurer.id)),
-                          DataCell(CircleAvatar(backgroundImage: AssetImage(procurer.logo),)),
-                          DataCell(Text(procurer.name),),
-                          DataCell(Text(procurer.emailAddress)),
-                          DataCell(Text(procurer.location)),
-
-                        ]
-                        )
-                    ).toList(),
-                  )
-                )),
+                    color: Colors.transparent,
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(horizontal: 50),
+                    child: DataTable(
+                      columns: [
+                        DataColumn(
+                            label: Text(
+                          'ID',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        )),
+                        DataColumn(
+                            label: Text(
+                          'LOGO',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        )),
+                        DataColumn(
+                            label: Text(
+                          'NAME',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        )),
+                        DataColumn(
+                            label: Text(
+                          'DATE CREATED',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        )),
+                        DataColumn(
+                            label: Text(
+                          'DESCRIPTION',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        )),
+                      ],
+                      rows: listAllProcurerEntitys
+                          .map((procurer) => DataRow(cells: [
+                                DataCell(Text(procurer.id)),
+                                DataCell(CircleAvatar(
+                                  backgroundImage: AssetImage(procurer.logo),
+                                )),
+                                DataCell(
+                                  Text(procurer.name),
+                                ),
+                                DataCell(Text(procurer.emailAddress)),
+                                DataCell(Text(procurer.location)),
+                              ]))
+                          .toList(),
+                    ))),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return AddNewProcurer();
-            }));
+            addNewProcurer(context);
           }),
     );
+  }
+
+  addNewProcurer(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Add Procurer'),
+            content: Column(
+              
+            ),
+            actions: [],
+          );
+        });
   }
 }

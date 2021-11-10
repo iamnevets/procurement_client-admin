@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:procurement/view/navigation.view.dart';
+import 'package:procurement/view/profile/profile.view.dart';
 
 class DashboardView extends StatefulWidget {
   const DashboardView({ Key? key }) : super(key: key);
@@ -19,10 +20,21 @@ class _DashboardViewState extends State<DashboardView> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         actions: [
-          CircleAvatar(
-            backgroundColor: Theme.of(context).colorScheme.primary,
-            child: Icon(Icons.account_circle),
-          )
+          Padding(
+              padding: EdgeInsets.all(10.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return ProfileView();
+                  }));
+                },
+                child: CircleAvatar(
+                  backgroundColor: Colors.amber,
+                  radius: 20,
+                  child: Icon(Icons.person_outlined),
+                ),
+              ),
+            )
         ],
       ),
       drawer: NavigationDrawer(),

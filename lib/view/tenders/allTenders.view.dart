@@ -1,11 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:procurement/model/tender.model.dart';
 import 'package:procurement/view/navigation.view.dart';
-import 'package:procurement/view/tenders/addNewTender.view.dart';
-import 'package:procurement/view/tenders/tenderDetail.view.dart';
+import 'package:procurement/view/profile/profile.view.dart';
 
 class TendersView extends StatefulWidget {
-  const TendersView({ Key? key }) : super(key: key);
+  const TendersView({Key? key}) : super(key: key);
 
   @override
   _TendersViewState createState() => _TendersViewState();
@@ -23,9 +23,17 @@ class _TendersViewState extends State<TendersView> {
         actions: [
           Padding(
             padding: EdgeInsets.all(10.0),
-            child: CircleAvatar(
-              backgroundColor: Colors.amber,
-              radius: 20,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return ProfileView();
+                }));
+              },
+              child: CircleAvatar(
+                backgroundColor: Colors.amber,
+                radius: 20,
+                child: Icon(Icons.person_outlined),
+              ),
             ),
           )
         ],
@@ -59,46 +67,43 @@ class _TendersViewState extends State<TendersView> {
               padding: const EdgeInsets.all(10.0),
               child: Column(
                 children: [
-                  Text('All Tenders', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),),
-                   Text(listAllTenders.length.toString()),
+                  Text(
+                    'All Tenders',
+                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                  ),
+                  Text(listAllTenders.length.toString()),
                 ],
               ),
             ),
             Expanded(
                 flex: 5,
                 child: Container(
-                  color: Colors.transparent,
-                  width: double.infinity,
-                  padding: EdgeInsets.symmetric(horizontal: 50),
-                  child: DataTable(
-                    columns: [
-                      DataColumn(label: Text('Name')),
-                      DataColumn(label: Text('ID')),
-                      DataColumn(label: Text('Date')),
-                      DataColumn(label: Text('Procurer')),
-                    ],
-                    rows: listAllTenders.map((tender) => 
-                      DataRow(
-                        cells: [
-                          DataCell(Text(tender.name)),
-                          DataCell(Text(tender.id)),
-                          DataCell(Text(tender.dayCreated + " " + tender.monthCreated + " " + tender.yearCreated)),
-                          DataCell(Text(tender.tenderEntity.name)),
-                        ]
-                        )
-                    ).toList(),
-                  )
-                )),
+                    color: Colors.transparent,
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(horizontal: 50),
+                    child: DataTable(
+                      columns: [
+                        DataColumn(label: Text('NAME', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20), )),
+                        DataColumn(label: Text('ID', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),)),
+                        DataColumn(label: Text('DATE', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),)),
+                        DataColumn(label: Text('PROCURER', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),)),
+                      ],
+                      rows: listAllTenders
+                          .map((tender) => DataRow(cells: [
+                                DataCell(Text(tender.name)),
+                                DataCell(Text(tender.id)),
+                                DataCell(Text(tender.dayCreated + " " + tender.monthCreated + " " + tender.yearCreated)),
+                                DataCell(Text(tender.tenderEntity.name)),
+                              ]))
+                          .toList(),
+                    ))),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return AddNewTender();
+              
             }));
-          }),
-    );
   }
 }

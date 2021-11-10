@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:procurement/model/bidder.model.dart';
+import 'package:procurement/view/profile/profile.view.dart';
 
 class BidderDetailView extends StatelessWidget {
   BidderDetailView({Key? key, required this.selectedBidder}) : super(key: key);
@@ -16,10 +17,21 @@ class BidderDetailView extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
         actions: [
-          CircleAvatar(
-            backgroundColor: Theme.of(context).colorScheme.primary,
-            child: Icon(Icons.account_circle),
-          )
+          Padding(
+              padding: EdgeInsets.all(10.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return ProfileView();
+                  }));
+                },
+                child: CircleAvatar(
+                  backgroundColor: Colors.amber,
+                  radius: 20,
+                  child: Icon(Icons.person_outlined),
+                ),
+              ),
+            )
         ],
       ),
       body: SingleChildScrollView(

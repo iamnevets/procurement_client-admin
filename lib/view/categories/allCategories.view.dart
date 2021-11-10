@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:procurement/model/category.view.dart';
 import 'package:procurement/view/navigation.view.dart';
+import 'package:procurement/view/profile/profile.view.dart';
 
 class CategoriesView extends StatefulWidget {
   const CategoriesView({Key? key}) : super(key: key);
@@ -21,9 +22,17 @@ class _CategoriesViewState extends State<CategoriesView> {
           actions: [
             Padding(
               padding: EdgeInsets.all(10.0),
-              child: CircleAvatar(
-                backgroundColor: Colors.amber,
-                radius: 20,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return ProfileView();
+                  }));
+                },
+                child: CircleAvatar(
+                  backgroundColor: Colors.amber,
+                  radius: 20,
+                  child: Icon(Icons.person_outlined),
+                ),
               ),
             )
           ],
@@ -68,7 +77,7 @@ class _CategoriesViewState extends State<CategoriesView> {
               Expanded(
                   flex: 5,
                   child: Padding(
-                    padding: const EdgeInsets.all(30.0),
+                    padding: EdgeInsets.symmetric(horizontal: 80),
                     child: ListView.builder(
                         itemCount: listAllCategories.length,
                         itemBuilder: (BuildContext context, index) {

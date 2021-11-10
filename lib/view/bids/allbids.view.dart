@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:procurement/model/bid.model.dart';
-import 'package:procurement/view/bids/addNewBid.view.dart';
-import 'package:procurement/view/bids/bidDetail.view.dart';
 import 'package:procurement/view/navigation.view.dart';
+import 'package:procurement/view/profile/profile.view.dart';
 
 class BidsView extends StatefulWidget {
   const BidsView({Key? key}) : super(key: key);
@@ -23,12 +22,20 @@ class _BidsViewState extends State<BidsView> {
         backgroundColor: Colors.transparent,
         actions: [
           Padding(
-            padding: EdgeInsets.all(10.0),
-            child: CircleAvatar(
-              backgroundColor: Colors.amber,
-              radius: 20,
-            ),
-          )
+              padding: EdgeInsets.all(10.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return ProfileView();
+                  }));
+                },
+                child: CircleAvatar(
+                  backgroundColor: Colors.amber,
+                  radius: 20,
+                  child: Icon(Icons.person_outlined),
+                ),
+              ),
+            )
         ],
       ),
       drawer: NavigationDrawer(),

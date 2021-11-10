@@ -89,25 +89,25 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                 }));
               },
             ),
-            ListTile(
-              leading: Icon(Icons.notifications_outlined),
-              title: Text('Notifications'),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return NotificationsView();
-                }));
-              },
-            ),
+            // ListTile(
+            //   leading: Icon(Icons.notifications_outlined),
+            //   title: Text('Notifications'),
+            //   onTap: () {
+            //     Navigator.push(context, MaterialPageRoute(builder: (context) {
+            //       return NotificationsView();
+            //     }));
+            //   },
+            // ),
             Expanded(child: Container()),
-            ListTile(
-              leading: Icon(Icons.settings_outlined),
-              title: Text('Settings'),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return SettingsView();
-                }));
-              },
-            ),
+            // ListTile(
+            //   leading: Icon(Icons.settings_outlined),
+            //   title: Text('Settings'),
+            //   onTap: () {
+            //     Navigator.push(context, MaterialPageRoute(builder: (context) {
+            //       return SettingsView();
+            //     }));
+            //   },
+            // ),
             ListTile(
                 leading: Icon(Icons.power_settings_new),
                 title: Text('Sign Out'),

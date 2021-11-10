@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:procurement/model/bidder.model.dart';
-import 'package:procurement/view/bidders/addNewBidder.view.dart';
-import 'package:procurement/view/bidders/bidderDetail.view.dart';
 import 'package:procurement/view/navigation.view.dart';
+import 'package:procurement/view/profile/profile.view.dart';
 
 class BiddersView extends StatefulWidget {
   const BiddersView({Key? key}) : super(key: key);
@@ -23,12 +22,20 @@ class _BiddersViewState extends State<BiddersView> {
         backgroundColor: Colors.transparent,
         actions: [
           Padding(
-            padding: EdgeInsets.all(10.0),
-            child: CircleAvatar(
-              backgroundColor: Colors.amber,
-              radius: 20,
-            ),
-          )
+              padding: EdgeInsets.all(10.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return ProfileView();
+                  }));
+                },
+                child: CircleAvatar(
+                  backgroundColor: Colors.amber,
+                  radius: 20,
+                  child: Icon(Icons.person_outlined),
+                ),
+              ),
+            )
         ],
       ),
       drawer: NavigationDrawer(),
@@ -99,9 +106,6 @@ class _BiddersViewState extends State<BiddersView> {
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return AddNewBidder();
-            }));
           }),
     );
   }
