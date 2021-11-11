@@ -47,7 +47,7 @@ class _TendersViewState extends State<TendersView> {
             Expanded(
                 flex: 1,
                 child: Container(
-                  padding: EdgeInsets.all(20),
+                  padding: EdgeInsets.symmetric(horizontal: 300, vertical: 20),
                   height: 44,
                   width: double.infinity,
                   color: Colors.transparent,
